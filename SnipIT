@@ -1,0 +1,19 @@
+services:
+  snipe-it:
+    image: lscr.io/linuxserver/snipe-it:latest
+    container_name: snipe-it
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - APP_URL=http://public-domain.local
+      - MYSQL_PORT_3306_TCP_ADDR=10.10.10.10
+      - MYSQL_PORT_3306_TCP_PORT=3308
+      - MYSQL_DATABASE=snipeit
+      - MYSQL_USER=snipeit
+      - MYSQL_PASSWORD=password
+    volumes:
+      - /path/to/data:/config
+    ports:
+      - 8083:80
+    restart: unless-stopped
